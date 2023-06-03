@@ -1,4 +1,4 @@
-const { Pool } = require('pg')
+const { Pool } = require("pg")
 const pool = new Pool({
     host: "192.168.1.66",
     user: "postgres",
@@ -6,6 +6,15 @@ const pool = new Pool({
     database: "likeme",
     allowExitOnIdle: true
 })
+
+pool.connect((err, _) => {
+    if (err) {
+      console.error("Error connecting DB:", err);
+    } else {
+      console.log("Successful connection DB");
+    }
+  });
+
 
 const obtenerPost = async () => {
     try {

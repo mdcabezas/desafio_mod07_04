@@ -1,5 +1,5 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // Operaciónes postgres
@@ -16,25 +16,25 @@ app.use(express.json())
 const PORT = process.env.PORT || 3000
 
 // Obtener todas los registros
-app.get('/posts', async (req, res) => {
+app.get("/posts", async (req, res) => {
     const { code, message } = await obtenerPost()
     res.status(code).json(message);
 })
 
 // Agregar nuevo registro
-app.post('/posts', async (req, res) => {
+app.post("/posts", async (req, res) => {
     const { code, message } = await agregarPost(req.body);
     res.status(code).send(message);
 })
 
 // Eliminar un registro
-app.delete('/posts/:id', async (req, res) => {
+app.delete("/posts/:id", async (req, res) => {
     const { code, message } = await eliminarPost(req.params.id)
     res.status(code).send({ code, message });
 })
 
 // Agregar Like a registro
-app.put('/posts/like/:id', async (req, res) => {
+app.put("/posts/like/:id", async (req, res) => {
     const { code, message } = await agregarLikeAPost(req.params.id)
     res.status(code).json({ code, message });
 })
